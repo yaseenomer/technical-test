@@ -18,6 +18,7 @@
                 />
                 <div class="field">
                 <input class="button" type="submit" value="login" />
+
                 </div>
             </div>
         </form>
@@ -37,18 +38,9 @@ export default {
 
     methods: {
         handleLogin() {
-            axios.get("/sanctum/csrf-cookie").then(r => {
-                axios
-                    .post("/login", this.formData)
-                    .then(res => console.log(res));
-            });
-        },
-        user() {
-            axios.get('/api/user')
-            .then(user => console.log(user))
-            .catch(err => console.log(err))
-        }
+            this.$store.dispatch('auth/login', this.formData)
 
+        }
     }
-};
+}
 </script>
