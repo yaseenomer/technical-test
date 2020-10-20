@@ -16,7 +16,9 @@
                     placeholder="Password"
                     v-model="formData.password"
                 />
-                <input type="submit" value="login" />
+                <div class="field">
+                <input class="button" type="submit" value="login" />
+                </div>
             </div>
         </form>
     </div>
@@ -40,7 +42,13 @@ export default {
                     .post("/login", this.formData)
                     .then(res => console.log(res));
             });
+        },
+        user() {
+            axios.get('/api/user')
+            .then(user => console.log(user))
+            .catch(err => console.log(err))
         }
+
     }
 };
 </script>
