@@ -15,7 +15,8 @@ const actions = {
     async login({dispatch}, data) {
         await axios.get('/sanctum/csrf-cookie');
         await axios.post("/login", data)
-        dispatch('attempt');
+        await dispatch('attempt');
+        return
     },
 
     async attempt({commit, state}) {
@@ -31,13 +32,14 @@ const actions = {
             commit('SET_LOGIN', true)
 
         } catch (e) {
-            commit('SET_TOKEN', null)
+            commit('SET_USER', null)
             commit('SET_LOGIN', false)
 
         }
     },
 
     async signOut({commit}) {
+        await  axios.post('/logout')
         commit('SET_LOGIN', false)
         commit('SET_USER', null)
     }

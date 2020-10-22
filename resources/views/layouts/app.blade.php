@@ -21,9 +21,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="background-color: white">
         <nav-bar></nav-bar>
-        <main class="container">
+        <main class="container" >
             @yield('content')
         </main>
     </div>

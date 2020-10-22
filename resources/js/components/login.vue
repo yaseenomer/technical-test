@@ -16,10 +16,9 @@
                     placeholder="Password"
                     v-model="formData.password"
                 />
-                <div class="field">
-                <input class="button" type="submit" value="login" />
-
-                </div>
+            </div>
+            <div class="field">
+                <input class="button" type="submit" value="login"/>
             </div>
         </form>
     </div>
@@ -39,6 +38,7 @@ export default {
     methods: {
         handleLogin() {
             this.$store.dispatch('auth/login', this.formData)
+                .then(() => this.$router.push('/'))
 
         }
     }

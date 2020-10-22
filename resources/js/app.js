@@ -9,14 +9,14 @@ import store from './store'
 require('./bootstrap');
 window.Vue = require('vue');
 
+
 Vue.component('nav-bar', require('./components/navbar').default);
 
-store.dispatch('auth/attempt')
 
-
-
-const app = new Vue({
-    el: '#app',
-    router,
-    store
-});
+store.dispatch('auth/attempt').then(() => {
+    const app = new Vue({
+        el: '#app',
+        router,
+        store
+    });
+})
