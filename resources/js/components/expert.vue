@@ -7,14 +7,15 @@
                 </p>
                 <h3 class="has-text-centered">{{ expert.name }}</h3>
                 <p class="has-text-centered">{{ expert.expert }}</p>
-                <br />
+                <br/>
 
-                <p class="has-text-centered">country:  {{ expert.country }}</p>
-                <p class="has-text-centered">working hours:  {{ expert.working_hours_from }} -> {{ expert.working_hours_to}}</p>
-                <br />
+                <p class="has-text-centered">country: {{ expert.country }}</p>
+                <p class="has-text-centered">working hours: {{ expert.working_hours_from }} ->
+                    {{ expert.working_hours_to }}</p>
+                <br/>
 
                 <p class="has-text-centered">
-                    <button class="button" @click="getExpert(expert)">book now</button>
+                    <button class="button" @click="$router.push({name: 'book-appointment'})">book now</button>
                 </p>
             </div>
 
@@ -24,11 +25,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
- export default {
+import {mapGetters} from 'vuex'
+
+export default {
     computed: {
-        ...mapGetters({ expert: 'expert/expert'})
+        ...mapGetters({expert: 'expert/expert'})
     }
 
- }
+}
 </script>

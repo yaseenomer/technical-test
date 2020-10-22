@@ -9,6 +9,7 @@ import home from './components/home'
 import login from './components/login.vue'
 import register from "./components/register";
 import expert from "./components/expert";
+import bookAppointment from "./components/bookAppointment";
 
 
 const routes  = [
@@ -19,9 +20,6 @@ const routes  = [
             if (!store.state.auth.isLoggedIn) next({ name: 'login'})
             else next()
         }
-
-
-
     },
     {
         path: '/login',
@@ -36,6 +34,11 @@ const routes  = [
         path: '/expert',
         name: 'expert',
         component: expert
+    },
+    {
+        path: '/book-appointment',
+        name: 'book-appointment',
+        component: bookAppointment
     }
 ]
 

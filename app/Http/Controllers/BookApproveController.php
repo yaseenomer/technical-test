@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Expert;
+use App\BookApprove;
+use App\Http\Requests\BookAppointmentRequest;
 use Illuminate\Http\Request;
 
-class ExpertController extends Controller
+class BookApproveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class ExpertController extends Controller
      */
     public function index()
     {
-        return Expert::with(['books', 'approvedBooks'])->get();
+        //
     }
 
     /**
@@ -33,18 +34,25 @@ class ExpertController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookAppointmentRequest $request)
     {
-        //
+        $bookApprove = new BookApprove;
+        $bookApprove->date = $request->date;
+        $bookApprove->user_id = auth()->id();
+        $bookApprove->expert_id = $request->expert_id;
+        $bookApprove->book_id = $request->book_id;
+        $bookApprove->save();
+        return  $bookApprove;
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\expert  $expert
+     * @param  \App\BookApprove  $bookApprove
      * @return \Illuminate\Http\Response
      */
-    public function show(expert $expert)
+    public function show(BookApprove $bookApprove)
     {
         //
     }
@@ -52,10 +60,10 @@ class ExpertController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\expert  $expert
+     * @param  \App\BookApprove  $bookApprove
      * @return \Illuminate\Http\Response
      */
-    public function edit(expert $expert)
+    public function edit(BookApprove $bookApprove)
     {
         //
     }
@@ -64,10 +72,10 @@ class ExpertController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\expert  $expert
+     * @param  \App\BookApprove  $bookApprove
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, expert $expert)
+    public function update(Request $request, BookApprove $bookApprove)
     {
         //
     }
@@ -75,10 +83,10 @@ class ExpertController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\expert  $expert
+     * @param  \App\BookApprove  $bookApprove
      * @return \Illuminate\Http\Response
      */
-    public function destroy(expert $expert)
+    public function destroy(BookApprove $bookApprove)
     {
         //
     }
