@@ -20,20 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b373105-5ae8-4d33-96a7-409eecbf0a78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/bookAppointment.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Expert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Expert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/BookApprove.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BookApprove.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExpertController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExpertController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/bookAppointment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/bookAppointment.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/expert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/expert.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/store/modules/expert.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/expert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +194,8 @@
       <workItem from="1603216506313" duration="5418000" />
       <workItem from="1603275719542" duration="11930000" />
       <workItem from="1603300730847" duration="10034000" />
-      <workItem from="1603347331120" duration="24287000" />
+      <workItem from="1603347331120" duration="24329000" />
+      <workItem from="1603392781375" duration="8747000" />
     </task>
     <servers />
   </component>

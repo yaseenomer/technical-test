@@ -26,8 +26,16 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import momentTz from 'moment-timezone'
+import moment from 'moment'
 
 export default {
+    data(){
+        return {
+            momentTz,
+            moment
+        }
+    },
     computed: {
         ...mapGetters({expert: 'expert/expert'})
     }

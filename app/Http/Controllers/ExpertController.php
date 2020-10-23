@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expert;
+use App\Http\Resources\ExpertResource;
 use Illuminate\Http\Request;
 
 class ExpertController extends Controller
@@ -14,7 +15,7 @@ class ExpertController extends Controller
      */
     public function index()
     {
-        return Expert::with(['books', 'approvedBooks'])->get();
+        return ExpertResource::collection(Expert::all());
     }
 
     /**

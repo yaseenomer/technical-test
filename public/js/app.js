@@ -1967,6 +1967,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1983,7 +1989,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     getTimeSlots: function getTimeSlots(e) {
-      this.$store.commit('expert/SET_CURRNT_TIME_SLOT', parseInt(e, 10));
+      this.$store.commit('expert/SET_CURRNT_TIME_SLOT', {
+        type: parseInt(e, 10),
+        date: this.book.date
+      });
     },
     save: function save() {
       this.book.expert_id = this.expert.id;
@@ -2006,6 +2015,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-timezone */ "./node_modules/moment-timezone/index.js");
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2039,7 +2052,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      momentTz: moment_timezone__WEBPACK_IMPORTED_MODULE_1___default.a,
+      moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a
+    };
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     expert: 'expert/expert'
   }))
@@ -43148,7 +43169,31 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.save } }, [_vm._v(" approve ")])
+    _c(
+      "div",
+      [
+        _c("p", [_vm._v("Booked times : ")]),
+        _vm._v(" "),
+        _vm._l(_vm.expert.approved_books, function(taken) {
+          return _c("p", { staticStyle: { color: "lightcoral" } }, [
+            _vm._v(
+              "\n            at : " +
+                _vm._s(taken.date) +
+                " from : " +
+                _vm._s(taken.book.from) +
+                " to : " +
+                _vm._s(taken.book.from) +
+                "\n        "
+            )
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c("button", { staticClass: "button", on: { click: _vm.save } }, [
+      _vm._v(" approve")
+    ])
   ])
 }
 var staticRenderFns = []
@@ -60978,13 +61023,11 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_expert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/expert */ "./resources/js/components/expert.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 var state = {
   experts: [],
@@ -61009,27 +61052,34 @@ var mutations = {
   SET_EXPERT: function SET_EXPERT(state, expert) {
     return state.expert = expert;
   },
-  SET_CURRNT_TIME_SLOT: function SET_CURRNT_TIME_SLOT(state, type, date) {
+  SET_CURRNT_TIME_SLOT: function SET_CURRNT_TIME_SLOT(state, _ref) {
+    var type = _ref.type,
+        date = _ref.date;
+
+    var takens = _.filter(state.expert.approved_books, {
+      date: date
+    });
+
     state.currntTimeSlot = _.filter(state.expert.books, function (book) {
-      book.type === type && _.filter(_components_expert__WEBPACK_IMPORTED_MODULE_1__["default"].approved_books, function (appro) {});
+      return book.type === type;
     });
   }
 };
 var actions = {
-  getExperts: function getExperts(_ref) {
+  getExperts: function getExperts(_ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var commit, experts;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref.commit;
+              commit = _ref2.commit;
               _context.next = 3;
               return axios.get('/api/experts');
 
             case 3:
               experts = _context.sent;
-              commit('SET_EXPERTS', experts.data);
+              commit('SET_EXPERTS', experts.data.data);
 
             case 5:
             case "end":

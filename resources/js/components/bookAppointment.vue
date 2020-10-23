@@ -9,7 +9,7 @@
         <div class="control field">
             <label class="label">Duration</label>
             <div class="select">
-                <select  @change="getTimeSlots($event.target.value)">
+                <select @change="getTimeSlots($event.target.value)">
                     <option value="15"> 15 min</option>
                     <option value="30"> 30 min</option>
                     <option value="60"> 1 hour</option>
@@ -32,8 +32,14 @@
         <p v-if="book.date"><span class="has-text-weight-bold">your appointment will be on :</span>
             <span> {{ book.date }} </span>
         </p>
+        <div>
+            <p>Booked times : </p>
+            <p v-for="taken in expert.approved_books" style="color: lightcoral">
+                at : {{ taken.date }} from : {{ taken.book.from }} to : {{ taken.book.from }}
+            </p>
+        </div>
 
-        <button @click="save"> approve </button>
+        <button class="button" @click="save"> approve</button>
 
     </div>
 
@@ -56,7 +62,8 @@ export default {
 
     methods: {
         getTimeSlots(e) {
-            this.$store.commit('expert/SET_CURRNT_TIME_SLOT', parseInt(e, 10))
+            this.$store.commit('expert/SET_CURRNT_TIME_SLOT',
+                {type: parseInt(e, 10), date: this.book.date})
         },
         save() {
             this.book.expert_id = this.expert.id
