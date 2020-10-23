@@ -15,6 +15,7 @@ import bookAppointment from "./components/bookAppointment";
 const routes  = [
     {
         path: '/',
+        name: 'home',
         component:home,
         beforeEnter: (to, from, next) => {
             if (!store.state.auth.isLoggedIn) next({ name: 'login'})

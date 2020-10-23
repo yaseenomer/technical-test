@@ -2187,7 +2187,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$store.dispatch('auth/login', this.formData).then(function () {
-        return _this.$router.push('/');
+        return _this.$router.push({
+          name: 'home'
+        });
       });
     }
   }
@@ -60810,6 +60812,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 var routes = [{
   path: '/',
+  name: 'home',
   component: _components_home__WEBPACK_IMPORTED_MODULE_3__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     if (!_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.auth.isLoggedIn) next({

@@ -38,7 +38,7 @@ export default {
     methods: {
         handleLogin() {
             this.$store.dispatch('auth/login', this.formData)
-                .then(() => this.$router.push('/'))
+                .then(() => this.$router.push({ name: 'home'}))
 
         }
     }
