@@ -32,12 +32,12 @@ const routes  = [
         component: register
     },
     {
-        path: '/expert',
+        path: '/expert/:id',
         name: 'expert',
         component: expert
     },
     {
-        path: '/book-appointment',
+        path: '/book-appointment/:id',
         name: 'book-appointment',
         component: bookAppointment
     }

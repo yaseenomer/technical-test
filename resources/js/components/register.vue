@@ -1,5 +1,10 @@
 <template>
     <div class="column is-half is-offset-one-quarter">
+        <div v-if="errors.length" class="notification is-danger is-light">
+            <button class="delete" @click="errors = []"></button>
+            <p v-for="error of errors"> {{ error }}</p>
+        </div>
+
         <form @submit.prevent="register">
             <h3>registration</h3>
             <div class="field">
@@ -33,13 +38,13 @@
 
             <div class="select field">
                 <select v-model="formData.timezone">
-                    <option v-for="time in timeZoneList" :value="time" >{{ time }}</option>
+                    <option v-for="time in timeZoneList" :value="time">{{ time }}</option>
 
                 </select>
             </div>
 
             <div class="field">
-                <input class="button" type="submit" value="register"/>
+                <button class="button is-warning" :class="loading" type="submit">register</button>
             </div>
         </form>
     </div>
@@ -58,16 +63,25 @@ export default {
                 timezone: '',
                 password: '',
                 password_confirmation: ''
-
             },
-            timeZoneList: momentTz.tz.names()
+            loading: '',
+            timeZoneList: momentTz.tz.names(),
+            errors: [],
         }
     },
     methods: {
-        register() {
-            axios.post('/register', this.formData)
-                .then(r => console.log(r))
-                .catch(err => console.log(err))
+        async register() {
+            this.loading = 'is-loading'
+            await axios.post('/register', this.formData)
+                .then(r => {
+                    window.location.href = 'http://127.0.0.1:8000'
+                })
+                .catch(err => {
+                    for (const [k, v] of Object.entries(err.response.data.errors)) {
+                        this.errors.push(v[0])
+                    }
+                })
+            this.loading = ''
         }
     }
 

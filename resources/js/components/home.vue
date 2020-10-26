@@ -9,7 +9,7 @@
                     <p class="has-text-centered">{{ expert.name }}</p>
                     <p class="has-text-centered">{{ expert.expert }}</p>
                     <p class="has-text-centered">
-                        <button class="button" @click="getExpert(expert)">More Info</button>
+                        <button class="button" @click="getExpert(expert.id)">More Info</button>
                     </p>
                 </div>
 
@@ -36,12 +36,11 @@ export default {
         ...mapGetters({user: 'auth/user', experts: 'expert/experts'})
     },
     created() {
-       this.$store.dispatch('expert/getExperts')
+        this.$store.dispatch('expert/getExperts')
     },
     methods: {
-        getExpert(expert) {
-            this.$store.commit('expert/SET_EXPERT', expert)
-            this.$router.push({name: 'expert'})
+        getExpert(id) {
+            this.$router.push({name: 'expert', params: {id}})
         }
     }
 

@@ -47,7 +47,7 @@ class ExpertController extends Controller
      */
     public function show(expert $expert)
     {
-        //
+        return  new ExpertResource($expert);
     }
 
     /**

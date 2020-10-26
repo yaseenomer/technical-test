@@ -22,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/experts', 'ExpertController@index');
+Route::middleware('auth:sanctum')->get('/experts/{expert}', 'ExpertController@show');
+
 
 Route::middleware('auth:sanctum')->post('/books', 'BookApproveController@store');

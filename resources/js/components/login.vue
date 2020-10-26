@@ -18,7 +18,7 @@
                 />
             </div>
             <div class="field">
-                <input class="button" type="submit" value="login"/>
+                <button class="button is-warning" type="submit" :class="loading">login</button>
             </div>
         </form>
     </div>
@@ -28,17 +28,19 @@
 export default {
     data() {
         return {
+            loading: '',
             formData: {
                 email: "",
                 password: ""
             }
         };
     },
-
     methods: {
-        handleLogin() {
-            this.$store.dispatch('auth/login', this.formData)
+       async handleLogin() {
+           this.loading = 'is-loading'
+           await this.$store.dispatch('auth/login', this.formData)
                 .then(() => this.$router.push({ name: 'home'}))
+           this.loading = ''
 
         }
     }

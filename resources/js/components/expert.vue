@@ -15,7 +15,9 @@
                 <br/>
 
                 <p class="has-text-centered">
-                    <button class="button" @click="$router.push({name: 'book-appointment'})">book now</button>
+                    <button class="button" @click="$router.push({name: 'book-appointment', params: { id: expert.id}})">
+                        book now
+                    </button>
                 </p>
             </div>
 
@@ -30,7 +32,7 @@ import momentTz from 'moment-timezone'
 import moment from 'moment'
 
 export default {
-    data(){
+    data() {
         return {
             momentTz,
             moment
@@ -38,6 +40,9 @@ export default {
     },
     computed: {
         ...mapGetters({expert: 'expert/expert'})
+    },
+    created() {
+        this.$store.dispatch('expert/getExpert', this.$route.params.id)
     }
 
 }

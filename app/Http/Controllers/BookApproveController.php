@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BookApprove;
 use App\Http\Requests\BookAppointmentRequest;
+use App\Http\Resources\ApprovedBookResource;
 use Illuminate\Http\Request;
 
 class BookApproveController extends Controller
@@ -42,7 +43,7 @@ class BookApproveController extends Controller
         $bookApprove->expert_id = $request->expert_id;
         $bookApprove->book_id = $request->book_id;
         $bookApprove->save();
-        return  $bookApprove;
+        return  new ApprovedBookResource($bookApprove);
 
     }
 

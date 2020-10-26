@@ -35,11 +35,11 @@
         <div>
             <p>Booked times : </p>
             <p v-for="taken in expert.approved_books" style="color: lightcoral">
-                at : {{ taken.date }} from : {{ taken.book.from }} to : {{ taken.book.from }}
+                at : {{ taken.date }} from : {{ taken.book.from }} to : {{ taken.book.to }}
             </p>
         </div>
 
-        <button class="button" @click="save"> approve</button>
+        <button class="button is-warning" :class="loading" @click="save"> approve</button>
 
     </div>
 
@@ -50,6 +50,7 @@ import {mapGetters} from 'vuex'
 export default {
     data() {
         return {
+            loading: '',
             book: {
                 date: '',
                 book_id: '',
@@ -59,15 +60,20 @@ export default {
     computed: {
         ...mapGetters({expert: 'expert/expert', slots: 'expert/currntTimeSlot'})
     },
+    created() {
+        this.$store.dispatch('expert/getExpert', this.$route.params.id)
+    },
 
     methods: {
         getTimeSlots(e) {
             this.$store.commit('expert/SET_CURRNT_TIME_SLOT',
                 {type: parseInt(e, 10), date: this.book.date})
         },
-        save() {
-            this.book.expert_id = this.expert.id
-            axios.post('/api/books', this.book).then(r => console.log(r))
+        async save() {
+            this.loading = 'is-loading'
+            this.book.expert_id = await this.expert.id
+            await this.$store.dispatch('expert/addBook', this.book)
+            this.loading = ''
         }
     }
 

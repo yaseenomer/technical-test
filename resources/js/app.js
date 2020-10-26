@@ -5,9 +5,14 @@
  */
 import router from "./router";
 import store from './store'
+import Toasted from 'vue-toasted';
+
 
 require('./bootstrap');
 window.Vue = require('vue');
+
+
+Vue.use(Toasted, { duration	: 3000, position: 'top-center'})
 
 
 Vue.component('nav-bar', require('./components/navbar').default);
