@@ -1,5 +1,9 @@
 <template>
     <div class="column is-half is-offset-one-quarter">
+        <div v-if="errors.length" class="notification is-danger is-light">
+            <button class="delete" @click="errors = []"></button>
+            <p v-for="error of errors"> {{ error }}</p>
+        </div>
         <form @submit.prevent="handleLogin">
             <div class="field">
                 <input
@@ -32,7 +36,8 @@ export default {
             formData: {
                 email: "",
                 password: ""
-            }
+            },
+            errors: [],
         };
     },
     methods: {
@@ -40,6 +45,11 @@ export default {
            this.loading = 'is-loading'
            await this.$store.dispatch('auth/login', this.formData)
                 .then(() => this.$router.push({ name: 'home'}))
+               .catch(err => {
+                   for (const [k, v] of Object.entries(err.response.data.errors)) {
+                       this.errors.push(v[0])
+                   }
+               })
            this.loading = ''
 
         }

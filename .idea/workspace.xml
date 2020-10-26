@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b373105-5ae8-4d33-96a7-409eecbf0a78" name="Default Changelist" comment="" />
+    <list default="true" id="2b373105-5ae8-4d33-96a7-409eecbf0a78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/login.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +193,7 @@
       <workItem from="1603347331120" duration="24329000" />
       <workItem from="1603392781375" duration="11725000" />
       <workItem from="1603483353983" duration="5103000" />
-      <workItem from="1603704854859" duration="13534000" />
+      <workItem from="1603704854859" duration="14223000" />
     </task>
     <servers />
   </component>
